@@ -34,9 +34,9 @@ def graph(symbol):
     symbol['slow_line'] = symbol['Adj Close'].shift(-25)
 
     # mplfinanceを使用し、可視化
-    lines = [mpf.make_addplot(symbol['basic_line']), #基準線
-            mpf.make_addplot(symbol['turn_line']),   #転換線
-            mpf.make_addplot(symbol['slow_line']),   #遅行線
+    lines = [mpf.make_addplot(symbol['basic_line'], color='#984ea3'), #基準線 紫
+            mpf.make_addplot(symbol['turn_line'], color='#ff7f00'),   #転換線 オレンジ
+            mpf.make_addplot(symbol['slow_line'], color='#4daf4a'),   #遅行線 緑
            ] 
 
     fig, ax = mpf.plot(symbol, type='candle', figsize=(16,6), style='classic', xrotation=0, addplot=lines, returnfig=True,
