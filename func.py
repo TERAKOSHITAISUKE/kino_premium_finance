@@ -24,14 +24,16 @@ def graph(symbol):
 
     # 雲（先行スパン1作成）
     symbol['span1'] = (symbol['basic_line'] + symbol['turn_line']) / 2
+    symbol['span1'] = symbol['span1'].shift(26)
 
     # 雲（先行スパン2作成）
     high52 = high.rolling(window=52).max()
     low52 =  low.rolling(window=52).min()
     symbol['span2'] = ( high52 + low52 ) / 2
+    symbol['span2'] = symbol['span2'].shift(-26)
 
     # 遅行線作成
-    symbol['slow_line'] = symbol['Adj Close'].shift(-25)
+    symbol['slow_line'] = symbol['Adj Close'].shift(-26)
 
     # mplfinanceを使用し、可視化
     lines = [mpf.make_addplot(symbol['basic_line'], color='#984ea3'), #基準線 紫
